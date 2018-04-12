@@ -5,11 +5,6 @@ import Card from '../Card/Card';
 import { fetchPokemonById } from '../../apiCalls/apiCalls';
 
 class CardWrapper extends Component {
- 
-
-  componentDidUpdate() {
-    this.createCards(this.props.pokemon);
-  }
   
   getIndividualPokemon(pokemonArray) {
     return pokemonArray.map(async (pokemonId) => {
@@ -19,20 +14,20 @@ class CardWrapper extends Component {
     });
   }
 
-  createCards(pokemonTypeArray) {
+  getPokemonType(pokemonTypeArray) {
     return pokemonTypeArray.map(type => {
-      this.getIndividualPokemon(type.pokemon);
-      // return <Card
-      //   key={type.id}
-      //   type={type.name}
-      //   pokemon={type.pokemon}
-      // />;
+      return <Card
+        key={type.id}
+        type={type.name}
+      />;
     });
   }
 
   render() {
     return (
-      <div></div>
+      <div>
+        {this.getPokemonType(this.props.pokemon)}
+      </div>
     );
   }
 
@@ -41,5 +36,9 @@ class CardWrapper extends Component {
 const mapStateToProps = ({pokemon}) => ({
   pokemon
 });
+
+CardWrapper.propTypes = {
+  pokemon: PropTypes.array
+};
 
 export default connect(mapStateToProps)(CardWrapper);
