@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import FakeContainer from '../../containers/FakeContainer/';
-import fetchPokemon from '../../apiCalls/apiCalls';
+import { fetchPokemonType } from '../../apiCalls/apiCalls';
 import * as actions from '../../actions/index';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const data = await fetchPokemon();
+    const data = await fetchPokemonType();
     this.props.addPokemon(data);
   }
 
