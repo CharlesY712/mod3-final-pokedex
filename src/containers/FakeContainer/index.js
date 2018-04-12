@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes, { shape, func, string } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fakeAction } from '../../actions';
 class FakeContainer extends Component {
@@ -8,8 +8,8 @@ class FakeContainer extends Component {
     return (
       <div>
         <button onClick={()=> {
-          this.props.fakeAction()
-          alert('FAKE')
+          this.props.fakeAction();
+          alert('FAKE');
         }}> FAKE </button>
       </div>
     );
@@ -17,8 +17,11 @@ class FakeContainer extends Component {
 }
 
 FakeContainer.propTypes = {
-  fake: shape({ fake: string }),
-  fakeAction: func.isRequired
+  fake: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
+  fakeAction: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ fake }) => ({ fake });

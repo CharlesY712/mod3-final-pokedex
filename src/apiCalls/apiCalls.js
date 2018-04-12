@@ -1,7 +1,19 @@
-const fetchPokemon = async () => {
-  const raw = await fetch('http://localhost:3001/types');
-  const data = await raw.json();
-  return data;
+export const fetchPokemonType = async () => {
+  try {
+    const raw = await fetch('http://localhost:3001/types');
+    const data = await raw.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
 };
 
-export default fetchPokemon;
+export const fetchPokemonById = async (id) => {
+  try {
+    const raw = await fetch(`http://localhost:3001/pokemon/${id}`);
+    const data = await raw.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
