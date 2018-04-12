@@ -5,8 +5,15 @@ import fetchPokemon from '../../apiCalls/apiCalls';
 import * as actions from '../../actions/index';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import CardWrapper from '../CardWrapper/CardWrapper';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: false
+    };
+  }
 
   async componentDidMount() {
     const data = await fetchPokemon();
@@ -17,7 +24,7 @@ class App extends Component {
     return (
       <div className='App'>
         <h1 className='header'> POKéDEX </h1>
-        <FakeContainer />
+        <CardWrapper />
       </div>
     );
   }
