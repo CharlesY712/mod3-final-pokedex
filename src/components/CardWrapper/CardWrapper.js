@@ -15,17 +15,18 @@ class CardWrapper extends Component {
   }
 
   getPokemonType(pokemonTypeArray) {
-    return pokemonTypeArray.map(type => {
-      return <Card
-        key={type.id}
-        type={type.name}
-      />;
+    return pokemonTypeArray.map(async type => {
+      // return <Card
+      //   key={type.id}
+      //   type={type.name}
+      //   getPokemon={this.getIndividualPokemon}
+      // />;
     });
   }
 
   render() {
     return (
-      <div>
+      <div >
         {this.getPokemonType(this.props.pokemon)}
       </div>
     );

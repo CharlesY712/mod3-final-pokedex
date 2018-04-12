@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Card = ({key, type }) => {
+const Card = ({key, type, getPokemon }) => {
 
   return (
-    <div id={key}>
+    <div onClick={() => console.log(getPokemon())}>
       <h1>{type}</h1>
     </div>
   );
