@@ -1,15 +1,15 @@
 import * as apiCall from './apiCalls';
-import mockPokemonArray from '../mocks/mockPokemonArray';
+import mockPokemonTypes from '../mocks/mockPokemonTypes';
+import mockIndividualPokemon from '../mocks/mockIndividualPokemon';
 
 describe('API Calls', () => {
   
   describe('fetchPokemonType', () => {
-
     let response;
     let url;
 
     beforeEach(() => {
-      response = mockPokemonArray;
+      response = mockPokemonTypes;
       url = 'http://localhost:3001/types';
     });
 
@@ -53,17 +53,52 @@ describe('API Calls', () => {
   });
 
   describe('fetchPokemonByID', () => {
+    let response;
+    let url;
+    let id;
 
-    it('should fetch with the correct params', () => {
-
+    beforeEach(() => {
+      id = 1;
+      response = mockIndividualPokemon;
+      url = `http://localhost:3001/pokemon/${id}`;
     });
 
-    it('should return an array of individual pokemon', () => {
+    it('should fetch with the correct params', () => {
+      window.fetch = jest.fn().mockImplementation(() => (
+        Promise.resolve({ok: true, json: () => Promise.resolve(response)})
+      ));
 
+      apiCall.fetchPokemonById(id);
+      
+      expect(window.fetch).toHaveBeenCalledWith(url);
+    });
+
+    it('should return an individual pokemon', async () => {
+      window.fetch = jest.fn().mockImplementation(() => (
+        Promise.resolve({ok: true, json: () => Promise.resolve(response)})
+      ));
+
+      const pokemon = await apiCall.fetchPokemonById(id);
+
+      expect(pokemon).toEqual(response);
     });
 
     it('should catch an error', () => {
+      window.fetch = jest.fn().mockImplementation(() => (
+        Promise.reject({
+          status: 500,
+          message: 'Error'
+        })
+      ));
 
+      const expected = {
+        status: 500,
+        message: 'Error'
+      };
+
+      const call = apiCall.fetchPokemonById(id);
+
+      expect(call).rejects.toEqual(expected);
     });
   });
 });
