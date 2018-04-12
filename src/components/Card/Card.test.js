@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 import { shallow } from 'enzyme';
 
-describe('App', () => {
+describe('Card', () => {
   let wrapper;
 
   beforeEach(() => {

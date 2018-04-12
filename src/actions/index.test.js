@@ -8,6 +8,6 @@ describe('Actions', () => {
       type: 'ADD_POKEMON',
       pokemon
     };
-    expect(actions.addPokemon(pokemon)).toEqual(expected)
+    expect(actions.addPokemon(pokemon)).toEqual(expected);
   });
 });

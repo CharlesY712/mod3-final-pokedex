@@ -1,5 +1,5 @@
 import addPokemonReducer from './addPokemonReducer';
-import mockPokemonArray from '../mocks/mockPokemonArray';
+import mockPokemonTypes from '../mocks/mockPokemonTypes';
 import * as actions from '../actions/index';
 
 describe('addPokemonReducer', () => {
@@ -12,7 +12,7 @@ describe('addPokemonReducer', () => {
   });
 
   it('should return an array of pokemon if action is ADD_POKEMON', () => {
-    const pokemon = mockPokemonArray;
+    const pokemon = mockPokemonTypes;
     const expected = {
       type: 'ADD_POKEMON',
       pokemon
